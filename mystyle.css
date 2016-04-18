@@ -2,3 +2,7 @@ label {
 	font-weight: bold;
 	display: inline-block;
 }
+table{
+	text-align: center;
+	border: 1px ;
+}
