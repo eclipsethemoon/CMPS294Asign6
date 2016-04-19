@@ -10,7 +10,7 @@ var busForm = '<tr><td><label for = "busname">Business name:</label></td> ' +
 							'<tr><td><label for = "taxid">Business Tax ID: </label></td>' +
 							'<td><input type = "text" name = "taxid" id = "taxid"</td></tr>' +
 							'<tr><td colspan="2" ><input type = "submit" value="Submit"></input></tr></td>';
-var isChecked = "";
+/*
 function bus() {
 	document.getElementById("Addto").innerHTML = busForm;
 	isChecked = "bus";
@@ -19,25 +19,25 @@ function res(){
 	document.getElementById("Addto").innerHTML = resForm;
 	isChecked = "res";
 
-}
+}*/
 function checkselect(){
-	if(isChecked == "bus")
+	if(document.getElementById('business').checked)
 	{
-		return true;
+		document.getElementById("Addto").innerHTML = busForm;
+		return validateForm2();
 	}
-	else if (isChecked == "res") {
-		return false;
+	else if (document.getElementById('resident').checked) {
+		document.getElementById("Addto").innerHTML = resForm;
+		return validateForm();
 	}
 
 }
+
 function validateForm() {
 	var returnvalue = true;
 	var errormessage = "";
 	var name = document.getElementById('name').value;
-	//var company = document.getElementById('company').value;
 	var email = document.getElementById('email').value;
-	//var phoneNum = document.getElementById('phoneNumber').value;
-	//var website = document.getElementById('website').value;
 	if(name == ""){
 		console.log("name function");
 		errormessage += "Enter your Name \n";
@@ -50,11 +50,7 @@ function validateForm() {
 		document.getElementById('email').style.borderColor = "red";
 		returnvalue = false;
 	}
-	/*if(website == ""){
-		errormessage += "Enter your website \n";
-		document.getElementById('website').style.borderColor = "red";
-		returnvalue = false;
-	}*/
+
 	if (errormessage != "") {
 		console.log("error message");
 		alert(errormessage);
@@ -69,11 +65,51 @@ function validateForm() {
 		returnvalue = false;
 	}
 
-	/*if(!validateWebsite(website)){
-		errormessage += "Website is not valid \n";
-		document.getElementById('website').style.borderColor = "red";
+	if (errormessage != "") {
+		console.log("final error check");
+		alert(errormessage);
+		return false;
+	}
+	var url = "http://www.southeastern.edu/";
+	window.open(url,"","height=400,width=400,scrollbars=no,menubar=no,status=no");
+	return returnvalue;
+}
+function validateForm2()
+{
+	var returnvalue = true;
+	var errormessage = "";
+	var busname = document.getElementById('busname').value;
+	var url = document.getElementById('url').value;
+	var taxid = document.getElementById('taxid').value;
+	
+	
+	if(busname == ""){
+		errormessage += "Enter your business name \n";
+		document.getElementById('busname').style.borderColor = "red";
 		returnvalue = false;
-	}*/
+	}
+	else if(url == ""){
+		errormessage += "Enter your url \n";
+		document.getElementById('url').style.borderColor = "red";
+		returnvalue = false;
+	}
+	else if(taxid == ""){
+		errormessage += "Enter your tax id \n";
+		document.getElementById('taxid').style.borderColor = "red";
+		returnvalue = false;
+	}
+	if (errormessage != "") {
+		console.log("error message");
+		alert(errormessage);
+		return false;
+
+	}
+
+	if(!validateWebsite(url)){
+		errormessage += "URL is not valid \n";
+		document.getElementById('url').style.borderColor = "red";
+		returnvalue = false;
+	}
 	if (errormessage != "") {
 		console.log("final error check");
 		alert(errormessage);
