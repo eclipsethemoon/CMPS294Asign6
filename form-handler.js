@@ -10,30 +10,25 @@ var busForm = '<tr><td><label for = "busname">Business name:</label></td> ' +
 							'<tr><td><label for = "taxid">Business Tax ID: </label></td>' +
 							'<td><input type = "text" name = "taxid" id = "taxid"</td></tr>' +
 							'<tr><td colspan="2" ><input type = "submit" value="Submit"></input></tr></td>';
-/*
-function bus() {
-	document.getElementById("Addto").innerHTML = busForm;
-	isChecked = "bus";
-}
-function res(){
-	document.getElementById("Addto").innerHTML = resForm;
-	isChecked = "res";
 
-}*/
 function checkselect(){
 	if(document.getElementById('business').checked)
 	{
 		document.getElementById("Addto").innerHTML = busForm;
-		return validateForm2();
 	}
 	else if (document.getElementById('resident').checked) {
 		document.getElementById("Addto").innerHTML = resForm;
-		return validateForm();
 	}
-
 }
-
-function validateForm() {
+function validateForm(){
+	if(document.getElementById('resident').checked){
+		return validateRes();
+	}
+	else{
+		return validateBus();
+	}
+}
+function validateRes() {
 	var returnvalue = true;
 	var errormessage = "";
 	var name = document.getElementById('name').value;
@@ -74,7 +69,7 @@ function validateForm() {
 	window.open(url,"","height=400,width=400,scrollbars=no,menubar=no,status=no");
 	return returnvalue;
 }
-function validateForm2()
+function validateBus()
 {
 	var returnvalue = true;
 	var errormessage = "";
